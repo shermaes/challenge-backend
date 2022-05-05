@@ -19,7 +19,7 @@ public class Category {
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            orphanRemoval = true
     )
     private List<Task> tasks = new ArrayList<>();
 
