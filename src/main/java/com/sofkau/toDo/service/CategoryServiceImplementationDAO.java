@@ -33,8 +33,11 @@ private TaskRepository taskRepository;
 
     @Override
     //Check if this works as it should
-    public Task updateTask(Task task) {
-        return taskRepository.save(task);
+    public Category updateTask(Task task) {
+        Category category = categoryRepository.findById(task.getFkCategoryId()).get();
+        category.addTask(task);
+        taskRepository.save(task);
+        return categoryRepository.save(category);
     }
 
     @Override

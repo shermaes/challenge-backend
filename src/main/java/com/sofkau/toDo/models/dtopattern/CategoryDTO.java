@@ -10,6 +10,8 @@ public class CategoryDTO implements Serializable {
 
     private Long id;
 
+    private String name;
+
     private List<Task> tasks = new ArrayList<>();
 
     private String title;
@@ -20,6 +22,13 @@ public class CategoryDTO implements Serializable {
 
     private Long fkCategoryId;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -61,11 +70,11 @@ public class CategoryDTO implements Serializable {
         this.done = done;
     }
 
-    public Long getFkTaskId() {
+    public Long getFkCategoryId() {
         return fkCategoryId;
     }
 
-    public void setFkTaskId(Long fkTaskId) {
+    public void setFkCategoryId(Long fkTaskId) {
         this.fkCategoryId = fkCategoryId;
     }
 }

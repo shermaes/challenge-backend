@@ -13,7 +13,7 @@ public interface CategoryServiceDAO {
 
     Category createTask(Task task);
 
-    Task updateTask(Task task);
+    Category updateTask(Task task);
 
     void deleteCategory(Category category);
 
