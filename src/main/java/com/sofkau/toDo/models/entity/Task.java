@@ -18,5 +18,5 @@ public class Task {
 
     private boolean done;
 
-    private Long fkTaskId;
+    private Long fkCategoryId;
 }

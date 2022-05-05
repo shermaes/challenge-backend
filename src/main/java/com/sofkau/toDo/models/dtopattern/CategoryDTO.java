@@ -18,7 +18,7 @@ public class CategoryDTO implements Serializable {
 
     private boolean done;
 
-    private Long fkTaskId;
+    private Long fkCategoryId;
 
 
     public Long getId() {
@@ -62,10 +62,10 @@ public class CategoryDTO implements Serializable {
     }
 
     public Long getFkTaskId() {
-        return fkTaskId;
+        return fkCategoryId;
     }
 
     public void setFkTaskId(Long fkTaskId) {
-        this.fkTaskId = fkTaskId;
+        this.fkCategoryId = fkCategoryId;
     }
 }
