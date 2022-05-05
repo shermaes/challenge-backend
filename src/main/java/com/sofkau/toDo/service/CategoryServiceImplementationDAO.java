@@ -35,7 +35,6 @@ private TaskRepository taskRepository;
     //Check if this works as it should
     public Category updateTask(Task task) {
         Category category = categoryRepository.findById(task.getFkCategoryId()).get();
-        category.addTask(task);
         taskRepository.save(task);
         return categoryRepository.save(category);
     }

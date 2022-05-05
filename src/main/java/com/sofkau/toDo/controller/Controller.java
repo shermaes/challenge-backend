@@ -30,7 +30,6 @@ public class Controller {
         return service.createTask(task);
     }
 
-    //update not working as it should
     @PutMapping("update/task")
     public Category updateTask(@RequestBody Task task){return service.updateTask(task);}
 
