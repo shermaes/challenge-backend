@@ -2,7 +2,7 @@ package com.sofkau.toDo.controller;
 
 import com.sofkau.toDo.models.entity.Category;
 import com.sofkau.toDo.models.entity.Task;
-import com.sofkau.toDo.service.CategoryServiceDAO;
+import com.sofkau.toDo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    private CategoryServiceDAO service;
+    private CategoryService service;
 
     @GetMapping("get/categories")
     public List<Category> getAllCategories() {

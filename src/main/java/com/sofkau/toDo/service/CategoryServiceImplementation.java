@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryServiceImplementationDAO implements CategoryServiceDAO{
+public class CategoryServiceImplementation implements CategoryService {
 
 @Autowired
 private CategoryRepository categoryRepository;
