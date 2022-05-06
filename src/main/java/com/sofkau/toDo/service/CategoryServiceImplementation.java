@@ -1,12 +1,17 @@
 package com.sofkau.toDo.service;
 
+
+import com.sofkau.toDo.models.dtopattern.CategoryDTO;
 import com.sofkau.toDo.models.entity.Category;
 import com.sofkau.toDo.models.entity.Task;
 import com.sofkau.toDo.repository.CategoryRepository;
 import com.sofkau.toDo.repository.TaskRepository;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImplementation implements CategoryService {
@@ -16,6 +21,9 @@ private CategoryRepository categoryRepository;
 
 @Autowired
 private TaskRepository taskRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
 
     @Override
@@ -40,21 +48,32 @@ private TaskRepository taskRepository;
     }
 
     @Override
-    public void deleteCategory(Category category) {
-        Category categoryToBeDeleted = categoryRepository.findById(category.getId()).get();
-        if(categoryToBeDeleted.getTasks().size()>=0){
-            categoryToBeDeleted.getTasks().forEach(task -> taskRepository.deleteById(task.getId()));
-        }
-        categoryRepository.deleteById(category.getId());
+    public void deleteCategory(Long id){ categoryRepository.deleteById(id);
     }
 
     @Override
-    public void deleteTask(Task task) {
-        taskRepository.deleteById(task.getId());
-    }
+    public void deleteTask(Long id){ taskRepository.deleteById(id);}
 
     @Override
-    public List<Category> findAllCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryDTO> findAllCategories() {
+        return categoryRepository.findAll().stream()
+                .map(this::convertEntityToDto)
+                .collect(Collectors.toList());
     }
+
+    private CategoryDTO convertEntityToDto(Category category){
+        modelMapper.getConfiguration()
+                .setMatchingStrategy(MatchingStrategies.LOOSE);
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO = modelMapper.map(category, CategoryDTO.class);
+        return categoryDTO;
+    }
+
+    private Category convertDTOToEntity(CategoryDTO categoryDTO){
+        modelMapper.getConfiguration()
+                .setMatchingStrategy(MatchingStrategies.LOOSE);
+        Category category = new Category();
+        category = modelMapper.map(categoryDTO, Category.class);
+        return category;
+}
 }

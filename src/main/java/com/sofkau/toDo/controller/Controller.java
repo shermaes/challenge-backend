@@ -1,5 +1,6 @@
 package com.sofkau.toDo.controller;
 
+import com.sofkau.toDo.models.dtopattern.CategoryDTO;
 import com.sofkau.toDo.models.entity.Category;
 import com.sofkau.toDo.models.entity.Task;
 import com.sofkau.toDo.service.CategoryService;
@@ -16,7 +17,7 @@ public class Controller {
     private CategoryService service;
 
     @GetMapping("get/categories")
-    public List<Category> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
         return service.findAllCategories();
     }
 
@@ -33,13 +34,13 @@ public class Controller {
     @PutMapping("update/task")
     public Category updateTask(@RequestBody Task task){return service.updateTask(task);}
 
-    @DeleteMapping("delete/category")
-    public void deleteCategory(@RequestBody Category category) {
-        service.deleteCategory(category);
+    @DeleteMapping("delete/category/{id}")
+    public void deleteCategory(@PathVariable Long id) {
+        service.deleteCategory(id);
     }
 
-    @DeleteMapping("delete/task")
-    public void deleteTask(@RequestBody Task task) {
-        service.deleteTask(task);
-    }
+    @DeleteMapping("delete/task/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        service.deleteTask(id);}
+
 }

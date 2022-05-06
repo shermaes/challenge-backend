@@ -1,5 +1,6 @@
 package com.sofkau.toDo.service;
 
+import com.sofkau.toDo.models.dtopattern.CategoryDTO;
 import com.sofkau.toDo.models.entity.Category;
 import com.sofkau.toDo.models.entity.Task;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,9 @@ public interface CategoryService {
 
     Category updateTask(Task task);
 
-    void deleteCategory(Category category);
+    void deleteCategory(Long id);
 
-    void deleteTask(Task task);
+    void deleteTask(Long id);
 
-    List<Category> findAllCategories();
+    List<CategoryDTO> findAllCategories();
 }
