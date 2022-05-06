@@ -27,24 +27,25 @@ private TaskRepository taskRepository;
 
 
     @Override
-    public Category createCategory(Category category) {
-        return categoryRepository.save(category);
+    public CategoryDTO createCategory(Category category) {
+        return convertEntityToDTO(categoryRepository.save(category));
     }
 
     @Override
-    public Category createTask(Task task) {
+    public CategoryDTO createTask(Task task) {
         Category category = categoryRepository.findById(task.getFkCategoryId()).get();
         category.addTask(task);
         taskRepository.save(task);
-        return categoryRepository.save(category);
+        return  convertEntityToDTO(categoryRepository.save(category));
     }
 
     @Override
     //Check if this works as it should
-    public Category updateTask(Task task) {
+    public CategoryDTO updateTask(Task task) {
         Category category = categoryRepository.findById(task.getFkCategoryId()).get();
+        category.addTask(task);
         taskRepository.save(task);
-        return categoryRepository.save(category);
+        return  convertEntityToDTO(categoryRepository.save(category));
     }
 
     @Override
@@ -57,14 +58,17 @@ private TaskRepository taskRepository;
     @Override
     public List<CategoryDTO> findAllCategories() {
         return categoryRepository.findAll().stream()
-                .map(this::convertEntityToDto)
+                .map(this::convertEntityToDTO)
                 .collect(Collectors.toList());
     }
 
-    private CategoryDTO convertEntityToDto(Category category){
+    private CategoryDTO convertEntityToDTO(Category category){
+
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
+
         CategoryDTO categoryDTO = new CategoryDTO();
+
         categoryDTO = modelMapper.map(category, CategoryDTO.class);
         return categoryDTO;
     }

@@ -22,17 +22,17 @@ public class Controller {
     }
 
     @PostMapping("save/category")
-    public Category createCategory(@RequestBody Category category) {
+    public CategoryDTO createCategory(@RequestBody Category category) {
         return service.createCategory(category);
     }
 
     @PostMapping("save/task")
-    public Category createTask(@RequestBody Task task) {
+    public CategoryDTO createTask(@RequestBody Task task) {
         return service.createTask(task);
     }
 
     @PutMapping("update/task")
-    public Category updateTask(@RequestBody Task task){return service.updateTask(task);}
+    public CategoryDTO updateTask(@RequestBody Task task){return service.updateTask(task);}
 
     @DeleteMapping("delete/category/{id}")
     public void deleteCategory(@PathVariable Long id) {
