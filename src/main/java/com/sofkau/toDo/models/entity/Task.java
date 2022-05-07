@@ -4,8 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity(name="Task")
-@Table(name="task")
+@Entity(name = "Task")
+@Table(name = "task")
 @Data
 public class Task {
     @Id
@@ -13,8 +13,6 @@ public class Task {
     private Long id;
 
     private String title;
-
-    private String message;
 
     private boolean done;
 

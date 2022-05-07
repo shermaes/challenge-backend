@@ -11,8 +11,6 @@ public class TaskDTO implements Serializable {
 
     private String title;
 
-    private String message;
-
     private boolean done;
 
     private Long fkCategoryId;

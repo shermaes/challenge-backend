@@ -33,7 +33,9 @@ public class Controller {
     }
 
     @PutMapping("update/task")
-    public CategoryDTO updateTask(@RequestBody Task task){return service.updateTask(task);}
+    public CategoryDTO updateTask(@RequestBody Task task) {
+        return service.updateTask(task);
+    }
 
     @DeleteMapping("delete/category/{id}")
     public void deleteCategory(@PathVariable Long id) {
@@ -42,6 +44,7 @@ public class Controller {
 
     @DeleteMapping("delete/task/{id}")
     public void deleteTask(@PathVariable Long id) {
-        service.deleteTask(id);}
+        service.deleteTask(id);
+    }
 
 }
